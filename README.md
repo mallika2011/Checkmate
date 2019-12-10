@@ -16,6 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ```bash
 git clone https://github.com/mallika2011/Checkmate.git
+sudo apt install nodejs
 cd Checkmate
 npm update
 npm install
