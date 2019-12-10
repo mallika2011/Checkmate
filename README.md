@@ -21,6 +21,7 @@ npm update
 npm install
 sudo npm start
 ```
+The app will begin to run on http://localhost:3000/
 
 The update and install steps could take a couple of minutes.
 For further (and more elaborate) details about the REACT library/framework please view the Documentation.md file.
