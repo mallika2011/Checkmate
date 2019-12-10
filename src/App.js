@@ -10,24 +10,31 @@ import './App.css';
 
 // function App() {
 class App extends Component {
-  state = {
-    todos: [
-      {
-        id: uuid.v4(),
-        title: 'Science Homework',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Dance Class',
-        completed: false
-      },
-      {
-        id: uuid.v4(),
-        title: 'Bake cookies',
-        completed: false
-      }
-    ]
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: [
+        {
+          id: uuid.v4(),
+          title: 'Science Homework',
+          completed: false,
+          inlocal: true
+        },
+        {
+          id: uuid.v4(),
+          title: 'Dance Class',
+          completed: false,
+          inlocal: true
+        },
+        {
+          id: uuid.v4(),
+          title: 'Bake cookies',
+          completed: false,
+          inlocal: true
+        }
+      ]
+    }
   }
 
   //Toggle complete tasks
@@ -45,7 +52,6 @@ class App extends Component {
   }
 
   //Delete Todo
-
   delTodo = (id) => {
 
     this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] })
@@ -53,7 +59,6 @@ class App extends Component {
   }
 
   //Adding a new todo
-
   addTodo = (title) => {
     const newTodo = {
       id: uuid.v4(),
@@ -75,7 +80,7 @@ class App extends Component {
                 <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo} />
               </React.Fragment>
             )} />
-            <Route path="/about" component={About}/>
+            <Route path="/about" component={About} />
           </div>
         </div>
       </Router>
