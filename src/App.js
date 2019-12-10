@@ -14,26 +14,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [
-        // {
-        //   id: uuid.v4(),
-        //   title: 'Science Homework',
-        //   completed: false,
-        //   inlocal: true
-        // },
-        // {
-        //   id: uuid.v4(),
-        //   title: 'Dance Class',
-        //   completed: false,
-        //   inlocal: true
-        // },
-        // {
-        //   id: uuid.v4(),
-        //   title: 'Bake cookies',
-        //   completed: false,
-        //   inlocal: true
-        // }
-      ]
+      todos: []
     }
   }
 
@@ -52,16 +33,16 @@ class App extends Component {
   }
 
   //Delete Todo
-  delTodo = (id,data_key) => {
+  delTodo = (id, data_key) => {
 
 
     // let index = id.target.getAttribute('data-key')
-    let index=data_key
-    let listValue=JSON.parse(localStorage.getItem('list'));
-    listValue.splice(index,1)
+    let index = data_key
+    let listValue = JSON.parse(localStorage.getItem('list'));
+    listValue.splice(index, 1)
     // this.setState({list:listValue});
     this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] })
-    localStorage.setItem('list',JSON.stringify(listValue))
+    localStorage.setItem('list', JSON.stringify(listValue))
 
   }
 
@@ -86,21 +67,22 @@ class App extends Component {
     this.setState({
       todos: JSON.parse(localStorage.getItem('list'))
     });
+
   }
 
   componentDidMount() {
     const list = window.localStorage.getItem('list');
     const parsedList = JSON.parse(list);
-    if(list == null){
-        return false
+    if (list == null) {
+      return false
     }
-    else{
-        this.setState({
-            todos: parsedList,
-        })
-        console.log(this.state.todos);
+    else {
+      this.setState({
+        todos: parsedList,
+      })
+      console.log(this.state.todos);
     }
-}
+  }
 
   render() {
     return (
