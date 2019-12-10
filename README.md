@@ -23,3 +23,4 @@ sudo npm start
 ```
 
 The update and install steps could take a couple of minutes.
+For further (and more elaborate) details about the REACT library/framework please view the Documentation.md file.
