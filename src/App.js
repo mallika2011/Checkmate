@@ -15,24 +15,24 @@ class App extends Component {
     super(props);
     this.state = {
       todos: [
-        {
-          id: uuid.v4(),
-          title: 'Science Homework',
-          completed: false,
-          inlocal: true
-        },
-        {
-          id: uuid.v4(),
-          title: 'Dance Class',
-          completed: false,
-          inlocal: true
-        },
-        {
-          id: uuid.v4(),
-          title: 'Bake cookies',
-          completed: false,
-          inlocal: true
-        }
+        // {
+        //   id: uuid.v4(),
+        //   title: 'Science Homework',
+        //   completed: false,
+        //   inlocal: true
+        // },
+        // {
+        //   id: uuid.v4(),
+        //   title: 'Dance Class',
+        //   completed: false,
+        //   inlocal: true
+        // },
+        // {
+        //   id: uuid.v4(),
+        //   title: 'Bake cookies',
+        //   completed: false,
+        //   inlocal: true
+        // }
       ]
     }
   }
@@ -52,9 +52,16 @@ class App extends Component {
   }
 
   //Delete Todo
-  delTodo = (id) => {
+  delTodo = (id,data_key) => {
 
+
+    // let index = id.target.getAttribute('data-key')
+    let index=data_key
+    let listValue=JSON.parse(localStorage.getItem('list'));
+    listValue.splice(index,1)
+    // this.setState({list:listValue});
     this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] })
+    localStorage.setItem('list',JSON.stringify(listValue))
 
   }
 
@@ -64,9 +71,36 @@ class App extends Component {
       id: uuid.v4(),
       title: title,
       completed: false
+    };
+    // this.setState({ todos: [...this.state.todos, newTodo] })
+    if (localStorage.getItem('list') == null) {
+      const list = []
+      list.push(newTodo);
+      localStorage.setItem("list", JSON.stringify(list))
     }
-    this.setState({ todos: [...this.state.todos, newTodo] })
+    else {
+      const list = JSON.parse(localStorage.getItem('list'))
+      list.push(newTodo)
+      localStorage.setItem("list", JSON.stringify(list))
+    }
+    this.setState({
+      todos: JSON.parse(localStorage.getItem('list'))
+    });
   }
+
+  componentDidMount() {
+    const list = window.localStorage.getItem('list');
+    const parsedList = JSON.parse(list);
+    if(list == null){
+        return false
+    }
+    else{
+        this.setState({
+            todos: parsedList,
+        })
+        console.log(this.state.todos);
+    }
+}
 
   render() {
     return (
